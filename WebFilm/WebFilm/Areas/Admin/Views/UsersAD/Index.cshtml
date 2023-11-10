@@ -1,0 +1,90 @@
+﻿@using PagedList.Mvc
+@using PagedList;
+@model IEnumerable<WebFilm.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+    int i = 0;
+    string nguoidung = "";
+}
+
+<div class="main-content">
+    <center>
+        <div>
+            <h3 style="background-color:lavender">DANH SÁCH TÀI KHOẢN </h3>
+        </div>
+    </center>
+    <div class="table-data__tool">
+        <div class="table-data__tool-left">
+            <div class="rs-select2--light rs-select2--md">
+                <form class="form-header" action="" method="POST">
+
+                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Tìm kiếm" class="au-input au-input--xl">
+                </form>
+            </div>
+        </div>
+        <div class="table-data__tool-right">
+            <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                <i class="fa fa-plus"></i>@Html.ActionLink("Thêm mới", "Create")
+            </button>
+            <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                <i class="fa fa-refresh"></i>@Html.ActionLink("Làm mới", "Index")
+            </button>
+        </div>
+    </div>
+    <table class="table table-data2" id="myTable">
+        <thead>
+            <tr>
+                <td>
+                    @{i++;}
+                    @i
+                </td>
+                <th>Tài Khoản</th>
+                <th>Mật Khẩu</th>
+                <th>Nhóm Người Dùng</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (@Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @{i++;}
+                            @i
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserPass)
+                        </td>
+                        <td>
+                            @{ if (@item.GroupID == 1)
+                                {
+                                    nguoidung = "Admin";
+                                }
+                                else
+                                {
+                                    nguoidung = "Thành Viên";
+                                }
+                            }
+                            @nguoidung
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-success">
+                                <i class="fa fa-pencil">@Html.ActionLink("Sửa", "Edit", new { id = item.UserID })</i>
+                            </button>
+                            &nbsp; &nbsp; &nbsp;
+                            <button class="btn btn-outline-warning">
+                                <i class="fa fa-trash-o">@Html.ActionLink("Xóa", "Delete", new { id = item.UserID })</i>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

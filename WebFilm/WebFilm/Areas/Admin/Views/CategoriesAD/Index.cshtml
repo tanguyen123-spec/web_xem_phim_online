@@ -1,0 +1,114 @@
+﻿@using PagedList.Mvc
+@using PagedList;
+@model IEnumerable<WebFilm.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+    int i = 0;
+    string theloai = "";
+}
+
+<div class="main-content">
+    <center>
+        <div>
+            <h3 style="background-color:lavender">DANH SÁCH THỂ LOẠI </h3>
+        </div>
+    </center>
+    <div class="table-data__tool">
+        <div class="table-data__tool-left">
+            <div class="rs-select2--light rs-select2--md">
+                <form class="form-header" action="" method="POST">
+
+                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Tìm kiếm" class="au-input au-input--xl">
+                </form>
+            </div>
+        </div>
+        <div class="table-data__tool-right">
+            <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                <i class="fa fa-plus"></i>@Html.ActionLink("Thêm mới", "Create")
+            </button>
+            <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                <i class="fa fa-refresh"></i>@Html.ActionLink("Làm mới", "Index")
+            </button>
+        </div>
+    </div>
+
+    <div class="table-responsive table--no-card m-b-30">
+        <div class="table-responsive table-responsive-data2">
+            @if (TempData["AlertMessage"] != null)
+            {
+                <div id="AlertBox" class="alert @TempData["AlertType"] hide" role="alert">
+                    @TempData["AlertMessage"]
+                </div>
+            }
+            <table class="table table-data2" id="myTable">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Thể Loại</th>
+                        <th>Chức Năng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (@Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @{i++;}
+                                    @i
+                                </td>
+                                <td>
+                                    @{ if (@item.CategoryID == 100)
+                                        {
+                                            theloai = "Kinh Dị";
+                                        }
+                                        if (@item.CategoryID == 101)
+                                        {
+                                            theloai = "Hài Hước";
+                                        }
+                                        if (@item.CategoryID == 102)
+                                        {
+                                            theloai = "Anime";
+                                        }
+                                        if (@item.CategoryID == 103)
+                                        {
+                                            theloai = "Tình Cảm";
+                                        }
+                                        if (@item.CategoryID == 104)
+                                        {
+                                            theloai = "Hành Động";
+                                        }
+                                        if (@item.CategoryID == 105)
+                                        {
+                                            theloai = "Chiến Tranh";
+                                        }
+                                        if (@item.CategoryID == 106)
+                                        {
+                                            theloai = "Viễn Tưởng";
+                                        }
+                                        if (@item.CategoryID == 107)
+                                        {
+                                            theloai = "Gia Đình";
+                                        }
+                                    }
+                                    @theloai
+                                </td>
+                                <td>
+                                    <button class="btn btn-outline-success">
+                                        <i class="fa fa-pencil">@Html.ActionLink("Sửa", "Edit", new { id = item.CategoryID })</i>
+                                    </button>
+                                    &nbsp; &nbsp; &nbsp;
+                                    <button class="btn btn-outline-warning">
+                                        <i class="fa fa-trash-o">@Html.ActionLink("Xóa", "Delete", new { id = item.CategoryID })</i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

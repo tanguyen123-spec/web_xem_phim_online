@@ -1,0 +1,100 @@
+﻿@using PagedList.Mvc
+@using PagedList;
+@model IEnumerable<WebFilm.Models.Country>
+
+@{
+    ViewBag.Title = "Index";
+    int i = 0;
+    string quocgia = "";
+}
+
+
+<div class="main-content">
+    <center>
+        <div>
+            <h3 style="background-color:lavender">DANH SÁCH QUỐC GIA </h3>
+        </div>
+    </center>
+    <div class="table-data__tool">
+        <div class="table-data__tool-left">
+            <div class="rs-select2--light rs-select2--md">
+                <form class="form-header" action="" method="POST">
+
+                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Tìm kiếm" class="au-input au-input--xl">
+                </form>
+            </div>
+        </div>
+        <div class="table-data__tool-right">
+            <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                <i class="fa fa-plus"></i>@Html.ActionLink("Thêm mới", "Create")
+            </button>
+            <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                <i class="fa fa-refresh"></i>@Html.ActionLink("Làm mới", "Index")
+            </button>
+        </div>
+    </div>
+    <table class="table table-data2" id="myTable">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Quốc Gia</th>
+                <th>Chức Năng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (@Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @{i++;}
+                            @i
+                        </td>
+                        <td>
+                            @{ if (@item.CountryID == 100)
+                                {
+                                    quocgia = "Mỹ";
+                                }
+                                if (@item.CountryID == 101)
+                                {
+                                    quocgia = "Hàn Quốc";
+                                }
+                                if (@item.CountryID == 102)
+                                {
+                                    quocgia = "Nhật Bản";
+                                }
+                                if (@item.CountryID == 103)
+                                {
+                                    quocgia = "Trung Quốc";
+                                }
+                                if (@item.CountryID == 104)
+                                {
+                                    quocgia = "Việt Nam";
+                                }
+                                if (@item.CountryID == 105)
+                                {
+                                    quocgia = "Ấn Độ";
+                                }
+                                if (@item.CountryID == 106)
+                                {
+                                    quocgia = "Thái Lan";
+                                }
+                            }
+                            @quocgia
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-success">
+                                <i class="fa fa-pencil">@Html.ActionLink("Sửa", "Edit", new { id = item.CountryID })</i>
+                            </button>
+                            &nbsp; &nbsp; &nbsp;
+                            <button class="btn btn-outline-warning">
+                                <i class="fa fa-trash-o">@Html.ActionLink("Xóa", "Delete", new { id = item.CountryID })</i>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

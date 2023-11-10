@@ -1,0 +1,21 @@
+﻿
+@model List<WebFilm.Models.Country>
+
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quốc gia <b class="caret"></b></a>
+    <ul class="dropdown-menu multi-column columns-3">
+        <li>
+            <div class="col-sm-4">
+                <ul class="multi-column-dropdown">
+                    @foreach (var item in Model)
+                    {
+                        <li><a href="/quocgia/@item.CountryID">@item.NameCountry</a></li>
+                        
+                    }
+
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </li>
+    </ul>
+</li>

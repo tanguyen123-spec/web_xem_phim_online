@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a59b3087d0f84dd388b50b4cafaeb9f6" Name="Diagram1">
+        <EntityTypeShape EntityType="Phim2Model.Category" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Phim2Model.Country" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Phim2Model.Movie" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Phim2Model.User" Width="1.5" PointX="8" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Phim2Model.UsersGroup" Width="1.5" PointX="5.75" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="Phim2Model.FK__Movie__CategoryI__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="Phim2Model.FK__Movie__CountryID__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="Phim2Model.FK__Users__GroupID__267ABA7A" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

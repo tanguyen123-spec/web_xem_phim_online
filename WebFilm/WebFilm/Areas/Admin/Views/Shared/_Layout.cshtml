@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title Page-->
+    <title>Admin- OneMovie</title>
+    <!-- Fontfaces CSS-->
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link href="~/assets/admin/css/font-face.css" rel="stylesheet" media="all">
+    <link href="~/assets/admin/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="~/assets/admin/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="~/assets/admin/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="~/assets/admin/css/font-awesome.min.css" />
+    <link href="~/assets/admin/css/PT.css" rel="stylesheet" />
+    <link href="~/assets/admin/css/PT2.css" rel="stylesheet" />
+    <!-- Bootstrap CSS-->
+    <link href="~/assets/admin/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+    <!-- Vendor CSS-->
+    <link href="~/assets/admin/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="~/assets/admin/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="~/assets/admin/vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="~/assets/admin/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="~/assets/admin/vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="~/assets/admin/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="~/assets/admin/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <!-- Main CSS-->
+    <link href="~/assets/admin/css/theme.css" rel="stylesheet" media="all">
+
+    <script src="~/assets/admin/js/search.js"></script>
+
+
+
+</head>
+
+<body class="">
+    <div class="page-wrapper">
+        <!-- HEADER MOBILE-->
+        <header class="header-mobile d-block d-lg-none">
+            <div class="header-mobile__bar">
+                <div class="container-fluid">
+                    <div class="header-mobile-inner">
+                        <a class="logo" href="index.html">
+                            <img src="~/assets/admin/images/icon/logo-blue.png" alt="CoolAdmin" />
+                        </a>
+                        <button class="hamburger hamburger--slider" type="button">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+        <!-- END HEADER MOBILE-->
+        <!-- MENU SIDEBAR-->
+        @RenderPage("_Menu.cshtml")
+
+        <!-- END MENU SIDEBAR-->
+        <!-- PAGE CONTAINER-->
+    <div class="page-container">
+        <!-- HEADER DESKTOP-->
+        <header class="header-desktop">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+                    <div class="header-wrap">
+                        <div class="header-button">
+                            <div class="noti-wrap">
+                                @{
+                                    var session = (WebFilm.Models.UserLogins)Session[WebFilm.Models.XULY.Session.USER_SESSION];
+                                }
+                                @if (session == null)
+                                {
+                                }
+                                else
+                                {
+                                    @*<div class="account-wrap">*@
+                                        <div class="account-item clearfix js-item-menu">
+                                            <div class="image">
+                                                <img src="~/assets/admin/images/icon/avatar-06.jpg" alt="" />
+                                            </div>
+                                            <div class="content">
+                                                <a class="js-acc-btn" href="#">@session.UserName</a>
+                                            </div>
+                                        </div>
+                                    @*</div>*@
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- HEADER DESKTOP-->
+        <!-- MAIN CONTENT-->
+        <!-- END MAIN CONTENT-->
+        <!-- END PAGE CONTAINER-->
+
+        @RenderBody()
+        <!-- Jquery JS-->
+        <script src="~/Scripts/jquery-1.10.2.js"></script>
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        @*<script src="/assets/admin/js/components_pagination.js"></script>*@
+
+        <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+        <!-- Bootstrap JS-->
+        <script src="~/assets/admin/vendor/bootstrap-4.1/popper.min.js"></script>
+        <script src="~/assets/admin/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+        <script src="~/assets/admin/js/bs_pagination.min.js"></script>
+        <!-- Vendor JS       -->
+        <script src="~/assets/admin/vendor/slick/slick.min.js">
+        </script>
+
+        <script src="~/assets/admin/vendor/wow/wow.min.js"></script>
+        <script src="/assets/admin/vendor/animsition/animsition.min.js"></script>
+        <script src="~/assets/admin/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+        <script src="~/assets/admin/vendor/counter-up/jquery.waypoints.min.js"></script>
+        <script src="~/assets/admin/vendor/counter-up/jquery.counterup.min.js"></script>
+
+
+        <script src="~/assets/admin/vendor/circle-progress/circle-progress.min.js"></script>
+        <script src="~/assets/admin/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+        <script src="~/assets/admin/vendor/chartjs/Chart.bundle.min.js"></script>
+        <script src="~/assets/admin/vendor/select2/select2.min.js"></script>
+
+        <!-- Main JS-->
+
+
+        <script>
+            $(document).ready(function () {
+                $('#AlertBox').removeClass('hide');
+                $('#AlertBox').delay(1000).slideUp(500);
+            })
+        </script>
+        <script>
+            function empty() {
+                var x = $('#search-box').val();
+                if (x == "" || x == null) {
+                    return false;
+                }
+            }
+        </script>
+        @RenderSection("jsFooter", required: false)
+    </div>
+
+
+
+    </div>
+</body>
+
+</html>
+<!-- end document-->

@@ -1,0 +1,96 @@
+﻿@model IEnumerable<WebFilm.Models.Movie>
+
+@{
+    ViewBag.Title = "Index";
+    var ListMovieNew = (List<WebFilm.Models.Movie>)ViewBag.ListMovieNew;
+    var ListMovieTop = (List<WebFilm.Models.Movie>)ViewBag.ListMovieTop;
+    var ListMovieRate = (List<WebFilm.Models.Movie>)ViewBag.Rate;
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+
+
+<div class="banner-bottom">
+    <div class="container">
+        <div class="w3_agile_banner_bottom_grid">
+            <div id="owl-demo" class="owl-carousel owl-theme">
+                @foreach (var s in ListMovieNew)
+                {
+                    <div class="item">
+                        <div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
+                            <a href="/Movies1/Details/@s.MovieID" class="hvr-shutter-out-horizontal">
+                                <img src="~/Content/images/@s.Image" title="album-name" class="img-responsive" alt="@s.Name" />
+                                <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+                            </a>
+                            <div class="mid-1 agileits_w3layouts_mid_1_home">
+                                <div class="w3l-movie-text">
+                                    <h6><a href="/Movies1/Details/@s.MovieID">@s.Name</a></h6>
+                                </div>
+                                <div class="mid-2 agile_mid_2_home">
+                                    <p>@s.Year</p>
+                                    <div class="block-stars">
+                                        <ul class="w3l-ratings">
+                                            <h5 style="font-size:12px;font-weight:bold;background-color:#E3B71E;border-radius:3px;padding:3px;"> Điểm IMDb: @s.Rate</h5>
+
+                                        </ul>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="ribben">
+                                <p>NEW</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="general-agileits-w3l">
+    <div class="w3l-medile-movies-grids">
+        <div class="movie-browse-agile">
+            <div class="browse-agile-w3ls general-w3ls">
+                <h4 class="latest-text w3_latest_text">Phim nổi bật</h4>
+                <div class="container">
+                    /latest-movies1
+                    <div class="browse-inner-come-agile-w3">
+
+                        @foreach (var m in ListMovieRate)
+                        {
+                            <div class="col-md-2 w3l-movie-gride-agile">
+                                <a href="/Movies1/Details/@m.MovieID" class="hvr-shutter-out-horizontal">
+
+                                    <img src="~/Content/images/@m.Image" title="album-name" alt="@m.Name" width="182" height="265" />
+                                    <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+                                </a>
+                                <div class="mid-1">
+                                    <div class="w3l-movie-text">
+                                        <h6><a href="/Movies1/Details/@m.MovieID">@m.Name</a></h6>
+                                    </div>
+                                    <div class="mid-2">
+
+                                        <p>@m.Year</p>
+
+                                        <div class="block-stars">
+                                            <ul class="w3l-ratings">
+                                                <h5 style="font-size:12px;font-weight:bold;background-color:#E3B71E;border-radius:3px;padding:3px;"> Điểm IMDb: @m.Rate</h5>
+
+                                            </ul>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

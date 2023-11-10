@@ -1,0 +1,84 @@
+﻿@using WebFilm.Models
+@using WebFilm.Models.XULY;
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layoutadmin.cshtml";
+    string key = Request.QueryString["searchKey"];
+    List<Movie> result = new List<Movie>();
+}
+@{
+    if (string.IsNullOrEmpty(key))
+    {
+
+    }
+    else
+    {
+        if (key == " " || key.Length < 3)
+        {
+            <div class="tittle-head">
+                <h4 class="latest-text">TÌM KIẾM</h4>
+                <div class="container">
+                    <div class="agileits-single-top">
+                        <ol class="breadcrumb">
+                            <li><a href="/">Trang chủ</a></li>
+                            <li class="active"><a href="#">Không tìm thấy kết quả với từ khoá "@key"</a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            result = new MovieTT().SearchByKey(key);
+            <div class="general-agileits-w3l">
+                <div class="w3l-medile-movies-grids">
+                    <div class="movie-browse-agile">
+                        <div class="browse-agile-w3ls general-w3ls">
+                            <div class="tittle-head">
+                                <h4 class="latest-text">TÌM KIẾM</h4>
+                                <div class="container">
+                                    <div class="agileits-single-top">
+                                        <ol class="breadcrumb">
+                                            <li><a href="/">Trang chủ</a></li>
+                                            <li class="active"><a href="#">Kết quả tìm kiếm với từ khoá "@key"</a></li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <div class="browse-inner">
+                                    @foreach (var s in result)
+                                    {
+                                        <div class="col-md-2 w3l-movie-gride-agile">
+                                            <a href="/Movies1/Details/@s.MovieID" class="hvr-shutter-out-horizontal">
+                                                <img src="~/Content/images/@s.Image" title="album-name" alt="@s.Name" width="182" height="268" />
+                                                <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+                                            </a>
+                                            <div class="mid-1">
+                                                <div class="w3l-movie-text">
+                                                    <h6><a href="/Movies1/Details/@s.MovieID">@s.Name</a></h6>
+                                                </div>
+                                                <div class="mid-2">
+
+                                                    <p>@s.Year</p>
+                                                    <div class="block-stars">
+                                                        <ul class="w3l-ratings">
+                                                            <h5 style="font-size:12px;font-weight:bold;background-color:#E3B71E;border-radius:3px;padding:3px;"> Điểm IMDb: @s.Rate</h5>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    <div class="clearfix"> </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+}

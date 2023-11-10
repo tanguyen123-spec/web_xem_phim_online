@@ -1,0 +1,108 @@
+﻿@using PagedList.Mvc
+@using PagedList;
+@model IPagedList<WebFilm.Models.Movie>
+@{
+    ViewBag.Title = "Index";
+    string quocgia = "";
+    int i = 0;
+}
+
+<div class="main-content">
+    <center>
+        <div>
+            <h3 style="background-color:lavender">DANH SÁCH PHIM </h3>
+        </div>
+    </center>
+    <div class="table-data__tool">
+        <div class="table-data__tool-left">
+            <div class="rs-select2--light rs-select2--md">
+                <form class="form-header" action="" method="POST">
+
+                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Tìm kiếm" class="au-input au-input--xl">
+                </form>
+            </div>
+        </div>
+        <div class="table-data__tool-right">
+            <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                <i class="fa fa-plus"></i>@Html.ActionLink("Thêm mới", "Create")
+            </button>
+            <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                <i class="fa fa-refresh"></i>@Html.ActionLink("Làm mới", "Index")
+            </button>
+        </div>
+    </div>
+
+    <div class="table-responsive table--no-card m-b-30">
+        <div class="table-responsive table-responsive-data2">
+            @if (TempData["AlertMessage"] != null)
+            {
+                <div id="AlertBox" class="alert @TempData["AlertType"] hide" role="alert">
+                    @TempData["AlertMessage"]
+                </div>
+            }
+            <table class="table table-data2" id="myTable">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên Phim</th>
+                        <th>Ảnh</th>
+                        <th>Mô Tả</th>
+                        <th>Thời Lượng</th>
+                        <th>Năm SX</th>
+                        <th>Link Phim</th>
+                        <th>Thể Loại</th>
+                        <th>Đánh Giá</th>
+                        <th>Lượt Xem</th>
+                        <th>Trạng Thái</th>
+                        <th>Quốc Gia</th>
+                        <th>Chức Năng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (@Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                    <tr style="text-align:left;" id="row_@item.MovieID" class="tr-shadow">
+
+                        <td style="display:none;">@item.MovieID</td>
+                        <td class="tr-shadow">
+                            @{i++;}
+                            @i
+                        </td>
+                        <td class="tr-shadow">@item.Name</td>
+
+                        <td class="tr-shadow"><img src="~/Content/images/@item.Image" width="150" height="200" /></td>
+
+                        <td class="tr-shadow"><textarea cols="20" rows="5" readonly>@Html.Raw(item.Description)</textarea></td>
+
+                        <td class="tr-shadow">@item.Time</td>
+                        <td class="tr-shadow">@item.Year</td>
+                        <td class="tr-shadow"><textarea cols="20" rows="5" readonly>@item.MovieLink</textarea></td>
+                        <td class="tr-shadow">@item.Category.NameCategory</td>
+                        <td class="tr-shadow">@item.Rate</td>
+                        <td class="tr-shadow">@item.Viewed</td>
+                        <td class="tr-shadow"><a href="#">@(item.Status ? "Kích hoạt" : "Huỷ Kích Hoạt")</a></td>
+                        <td class="tr-shadow">@item.Country.NameCountry</td>
+                        <td>
+                            <button class="btn btn-outline-success">
+                                <i class="fa fa-pencil">@Html.ActionLink("Sửa", "Edit", new { id = item.MovieID })</i>
+                            </button>
+                            &nbsp; &nbsp; &nbsp;
+                            <button class="btn btn-outline-warning">
+                                <i class="fa fa-trash-o">@Html.ActionLink("Xóa", "Delete", new { id = item.MovieID })</i>
+                            </button>
+                        </td>
+                    </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <div class="content">
+                <ul class="pagination modal-6" style="width:250px">
+                    @Html.PagedListPager(@Model, page => Url.Action("Index", new { page }))
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

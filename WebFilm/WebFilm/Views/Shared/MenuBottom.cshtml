@@ -1,0 +1,16 @@
+﻿@model List<WebFilm.Models.Category>
+
+<div class="col-md-7 w3ls_footer_grid1_right">
+    <ul>
+        @foreach (var mn in Model)
+        {
+            <li>
+                <a href="/theloai/@mn.CategoryID">@mn.NameCategory</a>
+            </li>
+        }
+        <li>
+            <a href="/contact/">Liên hệ</a>
+        </li>
+
+    </ul>
+</div>
